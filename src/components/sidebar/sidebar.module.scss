@@ -1,0 +1,55 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
+.block {
+  padding-top: 24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  background: $background-color_sidebar;
+  @include display-flex(flex-start);
+  flex-direction: column;
+  gap: 60px;
+
+  & .points {
+    @include display-flex;
+    gap: 14px;
+
+    p {
+      width: 6px;
+      height: 6px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    & .second {
+      opacity: .4;
+    }
+
+    & .third {
+      opacity: .2;
+    }
+  }
+
+  & .nav {
+    @include display-flex(flex-start);
+    flex-direction: column;
+    gap: 30px;
+
+
+    & div {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      @include display-flex;
+      cursor: pointer;
+    }
+
+    & .active{
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
+.content{
+  height: 100%;
+  background-color: $background-color;
+
+  & .header{
+    height: 94px;
+    padding: 0 30px;
+    @include display-flex(space-between);
+
+    & h2{
+      @include fonts(700, 20px, 20px, $background-color_sidebar)
+    }
+
+    & .info{
+      @include display-flex;
+      gap: 12px;
+
+      & span{
+        @include fonts(600, 16px, 16px, $background-color_sidebar);
+        opacity: .5;
+      }
+    }
+  }
+
+  & .body{
+
+    & .menu{
+      padding: 20px 40px;
+      @include display-flex(space-between);
+
+      & h2{
+        @include display-flex;
+        gap: 10px;
+
+        & span{
+          padding: 8px 16px;
+          @include fonts(700, 16px, 16px, $background-color_sidebar);
+          border: 2px solid #FFFFFF;
+          border-radius: 12px;
+          cursor: pointer;
+        }
+
+        & .active{
+          background-color: #FFFFFF;
+          opacity: .9;
+        }
+
+      }
+    }
+
+    & .body_field{
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+
+      & .item{
+        padding: 20px;
+        //width: 500px;
+        height: 300px;
+        border-radius: 30px;
+        border: 2px solid rgba(28, 29, 34, 0.06);
+        background-color: #FFFFFF;
+        @include display-flex(space-between, stretch);
+        flex-direction: column;
+
+
+        & p{
+          @include fonts(700, 16px, 16px, $background-color_sidebar);
+          flex: 1;
+        }
+
+        & .footer{
+          @include display-flex(space-between);
+
+          & .date{
+            padding: 8px 16px;
+            @include fonts(700, 14px, 14px, $color_date);
+            background-color: $background-color_date;
+            border-radius: 17px;
+          }
+
+          & .done{
+            position: relative;
+            @include display-flex(space-between);
+            padding: 8px 16px;
+            @include fonts(700, 14px, 14px, $color_date);
+            background-color: $background-color_date;
+            border-radius: 17px;
+            gap: 10px;
+
+            & div{
+              width: 14px;
+              height: 14px;
+              border: 1px solid $color_date;
+            }
+
+            & .check{
+              position: absolute;
+              @include fonts(700, 24px, 24px, $done);
+              top: 1px;
+              right: 13px;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}

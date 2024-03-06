@@ -1,0 +1,104 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
+.tasks{
+  width: 318px;
+  height: 100%;
+  position: absolute;
+  left: 90px;
+  top: 0;
+  padding: 32px 28px;
+  //@include display-flex(flex-start);
+  //flex-direction: column;
+
+  & .title{
+    width: 100%;
+    @include display-flex(space-between, flex-start);
+    align-content: flex-start;
+
+    & h2{
+      @include fonts(700, 30px, 30px, $background-color_sidebar)
+    }
+
+    & .plusButton{
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: rgba(28, 29, 34, 0.08);
+      @include display-flex;
+      cursor: pointer;
+
+      & span{
+        @include fonts(400, 24px, 24px, $background-color_sidebar);
+        opacity: .5;
+      }
+    }
+  }
+
+  & .main{
+    margin-top: 40px;
+
+    & .title_main{
+      @include display-flex(space-between);
+      align-content: flex-start;
+      cursor: pointer;
+
+      & h4{
+        @include fonts(700, 16px, 16px, $background-color_sidebar)
+      }
+
+      & .tick{
+        @include fonts(700, 24px, 24px, $background-color_sidebar);
+        transform: rotate(-0.25turn);
+        transition: all .5s;
+      }
+
+      & .active{
+        transform: rotate(0);
+        transition: all .5s;
+      }
+    }
+
+    & .open{
+      height: auto!important;
+      transition: all .5s;
+    }
+
+    & .body{
+      margin-top: 10px;
+      padding-left: 30px;
+      border-left: 2px solid rgba(28, 29, 34, 0.1);
+      @include display-flex(flex-start, flex-start);
+      flex-direction: column;
+      gap: 8px;
+      height: 0;
+      overflow: hidden;
+      transition: all .5s;
+      animation-duration: 3s;
+      animation-name: slidein;
+
+      & .item_menu{
+        position: relative;
+        height: 36px;
+        @include display-flex;
+        @include fonts(600, 16px, 16px, $background-color_sidebar);
+        opacity: .5;
+        cursor: pointer;
+
+        &::before{
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          background-color: rgba(28, 29, 34, 0.1);
+          top: 17px;
+          left: -30px;
+        }
+      }
+    }
+
+
+
+
+  }
+}
