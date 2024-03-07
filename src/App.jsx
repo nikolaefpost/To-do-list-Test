@@ -26,7 +26,7 @@ function App() {
                 break
             }
             case 'progress': {
-                setTasks(toDo.filter((task)=>!task.done))
+                setTasks(toDo.filter((task) => !task.done))
                 break
             }
             case 'done': {
@@ -44,7 +44,7 @@ function App() {
     <>
       <div className={styles.root}>
           <Sidebar/>
-          <Tasks setTaskStatus={setTaskStatus} openModal={openModal} />
+          <Tasks taskStatus={taskStatus} setTaskStatus={setTaskStatus} openModal={openModal} />
           <TasksContent toDo={tasks} openModal={openModal} />
           {modal && <Modal fn={closeModal} >
               <Form setModal={setModal} editTaskId={editTaskId} />

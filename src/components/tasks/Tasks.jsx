@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 import styles from './tasks.module.scss'
 
-const Tasks = ({ setTaskStatus, openModal}) => {
+const Tasks = ({ setTaskStatus, openModal, taskStatus }) => {
     const [open, setOpen] = useState(true)
 
     const { toDo } = useSelector((state) => state.tasks)
@@ -37,7 +37,7 @@ const Tasks = ({ setTaskStatus, openModal}) => {
                             className={cn(styles.tick, { [styles.active]: open })}
                         >&lsaquo;</span>
                     </div>
-                    <TasksMenu open={open} done={doneTasks} all={toDo.length} setTaskStatus={setTaskStatus} />
+                    <TasksMenu open={open} done={doneTasks} all={toDo.length} taskStatus={taskStatus} setTaskStatus={setTaskStatus} />
                 </div>
             </div>
 
@@ -50,4 +50,5 @@ export default Tasks
 Tasks.propTypes = {
     'setTaskStatus': PropTypes.func.isRequired,
     'openModal': PropTypes.func.isRequired,
+    'taskStatus': PropTypes.string,
 }

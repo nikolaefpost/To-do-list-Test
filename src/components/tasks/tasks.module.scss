@@ -8,8 +8,6 @@
   left: 90px;
   top: 0;
   padding: 32px 28px;
-  //@include display-flex(flex-start);
-  //flex-direction: column;
 
   & .title{
     width: 100%;
@@ -95,10 +93,10 @@
           left: -30px;
         }
       }
+
+      & .active_item{
+        opacity: .9;
+      }
     }
-
-
-
-
   }
 }
