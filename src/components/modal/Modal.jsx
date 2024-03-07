@@ -1,9 +1,10 @@
 import { AiOutlineClose } from 'react-icons/ai'
 import Portal from './Portal.jsx'
+import PropTypes from 'prop-types'
 
 import styles from './modal.module.scss'
 
-const Modal = ({fn, children}) => {
+const Modal = ({fn, children }) => {
     return (
         <Portal>
             <div className={styles.modal}>
@@ -18,3 +19,8 @@ const Modal = ({fn, children}) => {
 }
 
 export default Modal
+
+Modal.propTypes = {
+    'fn': PropTypes.func.isRequired,
+    'children': PropTypes.node.isRequired,
+}

@@ -1,6 +1,6 @@
 import styles from './sidebar.module.scss'
 import cn from 'classnames'
-import {logo, map, user, main, claud, board, setting, schedule} from '../../assets/icons'
+import { logo, map, user, main, claud, board, setting, schedule } from '../../assets/icons'
 
 const sidebarNav = [main, user, board, schedule, claud, map, setting]
 

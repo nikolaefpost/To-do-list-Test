@@ -1,7 +1,8 @@
-import styles from './tasks.module.scss'
 import cn from 'classnames'
-const TasksMenu = ({ open, all= 0, done = 0 }) => {
-    // const tasKsMenu = ['All', 'In progress', 'Done']
+import PropTypes from 'prop-types'
+
+import styles from './tasks.module.scss'
+const TasksMenu = ({ open, all = 0, done = 0, setTaskStatus }) => {
     const tasKsMenu = [
         { 'id': 'all', 'title': 'All', 'value': all },
         { 'id': 'progress', 'title': 'In progress', 'value': all - done },
@@ -9,9 +10,21 @@ const TasksMenu = ({ open, all= 0, done = 0 }) => {
     ]
     return (
         <div className={cn(styles.body, { [styles.open]: open })}>
-            {tasKsMenu.map((item) => <div key={item.id} className={styles.item_menu}>{item.title} ({item.value}) </div>)}
+            {/* eslint-disable-next-line id-blacklist */}
+            {tasKsMenu.map((task) => <div
+                key={ task.id }
+                className={styles.item_menu}
+                onClick={() => setTaskStatus(task.id)}
+            >{task.title} ({task.value}) </div>)}
         </div>
     )
 }
 
 export default TasksMenu
+
+TasksMenu.propTypes = {
+    'open': PropTypes.bool.isRequired,
+    'all': PropTypes.number.isRequired,
+    'done': PropTypes.number.isRequired,
+    'setTaskStatus': PropTypes.func.isRequired,
+}

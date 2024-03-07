@@ -49,6 +49,19 @@
         }
 
       }
+
+      & button{
+        padding: 8px 16px;
+        @include fonts(700, 16px, 16px, $background-color_sidebar);
+        border: 2px solid #FFFFFF;
+        border-radius: 12px;
+        cursor: pointer;
+
+        &:hover{
+          background-color: #FFFFFF;
+          opacity: .9;
+        }
+      }
     }
 
     & .body_field{
@@ -67,9 +80,24 @@
         @include display-flex(space-between, stretch);
         flex-direction: column;
 
+        & .header_item{
+          @include display-flex(space-between);
+          min-height: 14px;
+          margin: 20px 0;
+
+          & h3{
+            @include fonts(700, 14px, 14px, $background-color_sidebar);
+          }
+
+          & .edit{
+            @include display-flex;
+            gap: 12px;
+          }
+        }
+
 
         & p{
-          @include fonts(700, 16px, 16px, $background-color_sidebar);
+          @include fonts(700, 16px, 16px, $color_date);
           flex: 1;
         }
 
@@ -78,7 +106,7 @@
 
           & .date{
             padding: 8px 16px;
-            @include fonts(700, 14px, 14px, $color_date);
+            @include fonts(400, 14px, 14px, $color_date);
             background-color: $background-color_date;
             border-radius: 17px;
           }

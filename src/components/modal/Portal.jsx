@@ -1,5 +1,6 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 
 const portalRoot = document.querySelector('#portal')
 
@@ -23,4 +24,8 @@ export default class Portal extends React.Component {
             this.el,
         )
     }
+}
+
+Portal.propTypes = {
+    'children': PropTypes.node.isRequired,
 }

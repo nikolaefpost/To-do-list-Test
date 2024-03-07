@@ -1,11 +1,23 @@
-import styles from './content.module.scss'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import TaskItem from './TaskItem.jsx'
+import { getToday } from '../../util/date.js'
+import PropTypes from 'prop-types'
 
-const TaskBody = () => {
-    const { toDo } = useSelector((state) => state.tasks)
+import styles from './content.module.scss'
+
+const TaskBody = ({ toDo, openModal }) => {
     const [isAll, setIsAll] = useState(true)
+
+    const [currentTasks, setCurrentTasks] = useState(toDo)
+
+    useEffect(() => {
+        const today = getToday()
+        if (isAll) {
+            setCurrentTasks(toDo)
+        } else {
+            setCurrentTasks(toDo.filter((task) => task.date_completion === today))
+        }
+    },[isAll, toDo])
 
     return (
         <div className={styles.body}>
@@ -20,10 +32,11 @@ const TaskBody = () => {
                         onClick={() => setIsAll((pre) => !pre)}
                     >The tasks for today</span>
                 </h2>
+                <button onClick={() => openModal()}>add task</button>
             </div>
             <div className={styles.body_field}>
-                {toDo.map((it) => (
-                    <TaskItem key={it.id} item={it}/>
+                {currentTasks.map((it) => (
+                    <TaskItem key={it.id} task={it} openModal={openModal}/>
                 ))}
             </div>
         </div>
@@ -31,3 +44,8 @@ const TaskBody = () => {
 }
 
 export default TaskBody
+
+TaskBody.propTypes = {
+    'toDo': PropTypes.array.isRequired,
+    'openModal': PropTypes.func.isRequired,
+}

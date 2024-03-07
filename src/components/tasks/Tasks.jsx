@@ -1,48 +1,53 @@
-import styles from './tasks.module.scss'
-import {useState} from 'react'
+import { useState } from 'react'
 import cn from 'classnames'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import TasksMenu from './TasksMenu.jsx'
-import {Modal} from "../";
+import PropTypes from 'prop-types'
 
-const Tasks = () => {
-    const [open, setOpen] = useState(false)
-    const [modal, setModal] = useState(false)
+import styles from './tasks.module.scss'
+
+const Tasks = ({ setTaskStatus, openModal}) => {
+    const [open, setOpen] = useState(true)
+
     const { toDo } = useSelector((state) => state.tasks)
     const doneTasks = toDo.filter((task) => task.done).length
-
-    const closeModal = (event) => {
-        event.stopPropagation()
-        setModal(false)
+        const handlerOpenMenu = () => {
+        setOpen((pre) => {
+            if (pre) setTaskStatus('')
+            else setTaskStatus('all')
+            return !pre
+        })
     }
-    const openModal = () => setModal(true)
 
     return (<>
             <div className={styles.tasks}>
                 <div className={styles.title}>
-                    <h2>Tasks</h2>
+                    <h2>Menu</h2>
                     <div className={styles.plusButton}>
-                        <span onClick={openModal}>+</span>
+                        <span onClick={() => openModal()}>+</span>
                     </div>
                 </div>
                 <div className={styles.main}>
                     <div
                         className={styles.title_main}
-                        onClick={() => setOpen((pre) => !pre)}
+                        onClick={handlerOpenMenu}
                     >
                         <h4>Tasks</h4>
                         <span
                             className={cn(styles.tick, { [styles.active]: open })}
                         >&lsaquo;</span>
                     </div>
-                    <TasksMenu open={open} done={doneTasks} all={toDo.length}/>
+                    <TasksMenu open={open} done={doneTasks} all={toDo.length} setTaskStatus={setTaskStatus} />
                 </div>
             </div>
-            {modal && <Modal fn={closeModal}>
-                Form
-            </Modal>}
+
         </>
     )
 }
 
 export default Tasks
+
+Tasks.propTypes = {
+    'setTaskStatus': PropTypes.func.isRequired,
+    'openModal': PropTypes.func.isRequired,
+}
