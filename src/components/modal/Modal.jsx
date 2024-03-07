@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import styles from './modal.module.scss'
 
-const Modal = ({fn, children }) => {
+const Modal = ({ fn, children }) => {
     return (
         <Portal>
             <div className={styles.modal}>

@@ -2,7 +2,7 @@ import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import cn from 'classnames'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addTasks, editTask } from '../../store/tasksToDo.js'
 import { getIdDate } from '../../util/date.js'
 import PropTypes from 'prop-types'
@@ -23,7 +23,7 @@ const schema = yup
     })
     .required(
         'Поля не заполнены или введены неверно. Исправьте или введите заново, пожалуйста.',
-    );
+    )
 
 const Form = ({ setModal, editTaskId }) => {
     const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const Form = ({ setModal, editTaskId }) => {
     }
         const {
         register,
-        'formState': { errors},
+        'formState': { errors },
         handleSubmit,
     } = useForm({
         'mode': 'onTouched',
@@ -47,7 +47,7 @@ const Form = ({ setModal, editTaskId }) => {
         const task = { ...data, 'id': getIdDate(), 'done': false }
         editTaskId ? dispatch(editTask({ 'id': editTaskId, task })) : dispatch(addTasks(task))
         setModal(false)
-    });
+    })
     return (
         <form
             onSubmit={onSubmit}
