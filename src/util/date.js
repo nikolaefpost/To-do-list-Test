@@ -7,7 +7,7 @@ return `${date.getDate() < 10 ? '0' : ''}${date.getDate()} ${month[date.getMonth
 
 export const getToday = () => {
     const date = new Date()
-  return `${date.getFullYear()}-${date.getDate() < 9 ? '0' : ''}${date.getMonth() + 1}-${date.getDate() < 10 ? '0' : ''}${date.getDate()}`
+  return `${date.getFullYear()}-${date.getMonth() < 9 ? '0' : ''}${date.getMonth() + 1}-${date.getDate() < 10 ? '0' : ''}${date.getDate()}`
 }
 
 export const getIdDate = () => Date.now()
